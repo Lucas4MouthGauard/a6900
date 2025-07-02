@@ -5,32 +5,48 @@ function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'whyLong' | 'interactive'>('home');
   const [clickCount, setClickCount] = useState(0);
   const [showFloatingTexts, setShowFloatingTexts] = useState(false);
+  const [showShake, setShowShake] = useState(false);
 
   const memeReasons = [
-    { text: "我没得选，只能all in", avatar: "🤡" },
-    { text: "你不懂，这次不一样", avatar: "🚀" },
-    { text: "A股下跌只会影响上升速度", avatar: "📈" },
-    { text: "只要我不卖，就不算亏", avatar: "💎" },
-    { text: "我满仓科技，站着死", avatar: "⚡" }
+    { text: "中国股市怎么能看空！", avatar: "🇨🇳" },
+    { text: "这次一定不一样！", avatar: "🚀" },
+    { text: "只要我不卖，它就不会跌", avatar: "💎" },
+    { text: "我是做价值投资的", avatar: "📈" },
+    { text: "我满仓茅台，站着死！", avatar: "🍶" },
+    { text: "十年一遇的底部，又来了！", avatar: "📉" }
   ];
 
   const floatingTexts = [
-    "茅台喝不起，只能买股",
-    "A股不行，但我不认输",
-    "只要我不卖，就不算亏",
-    "这次一定能到7000！",
-    "我满仓科技，站着死",
-    "打不过，就all in"
+    "中国股市怎么能看空！",
+    "这次一定不一样！",
+    "只要我不卖，它就不会跌",
+    "我是做价值投资的",
+    "我满仓茅台，站着死！",
+    "十年一遇的底部，又来了！",
+    "A股不涨没关系，链上我们让它涨！",
+    "冲！我们要自己干一波6900！",
+    "链上高点，一键 FOMO！",
+    "别再看上证指数了，看 $A6900 就够了！"
   ];
 
   const handleBoostClick = () => {
     setClickCount(prev => prev + 1);
     setShowFloatingTexts(true);
-    setTimeout(() => setShowFloatingTexts(false), 3000);
+    setShowShake(true);
+    
+    // 播放音效（如果有的话）
+    const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmGgU7k9n1unEiBC13yO/eizEIHWq+8+OWT');
+    audio.volume = 0.3;
+    audio.play().catch(() => {}); // 忽略可能的错误
+    
+    setTimeout(() => {
+      setShowFloatingTexts(false);
+      setShowShake(false);
+    }, 3000);
   };
 
   return (
-    <div className="App">
+    <div className={`App ${showShake ? 'screen-shake' : ''}`}>
       {/* 像素风背景 */}
       <div className="pixel-background">
         <div className="grid-overlay"></div>
@@ -48,6 +64,7 @@ function App() {
           ))}
         </div>
         <div className="glowing-6900">6900</div>
+        <div className="old-high">6124</div>
       </div>
 
       {/* 导航 */}
@@ -56,7 +73,7 @@ function App() {
           className={`nav-btn ${currentPage === 'home' ? 'active' : ''}`}
           onClick={() => setCurrentPage('home')}
         >
-          首页
+          为什么叫A6900
         </button>
         <button 
           className={`nav-btn ${currentPage === 'whyLong' ? 'active' : ''}`}
@@ -68,7 +85,7 @@ function App() {
           className={`nav-btn ${currentPage === 'interactive' ? 'active' : ''}`}
           onClick={() => setCurrentPage('interactive')}
         >
-          互动区
+          点击助力
         </button>
       </nav>
 
@@ -77,25 +94,30 @@ function App() {
         {currentPage === 'home' && (
           <div className="home-page">
             <h1 className="pixel-title">A6900</h1>
-            <h2 className="pixel-subtitle">散户最后的精神高地</h2>
+            <h2 className="pixel-subtitle">一个你等不来的高点，我们链上自己冲</h2>
+            <div className="meme-slogan">
+              <div className="slogan-item">现实不涨？那就链上涨！</div>
+              <div className="slogan-item">A股不给的，我们自己造一个！</div>
+              <div className="slogan-item">别再看上证指数了，看 $A6900 就够了！</div>
+            </div>
             <p className="pixel-description">
-              A6900，是A股永远无法触及的幻觉高点，也是所有股民的梦中情股。
-              <br />
-              今天，我们把它写进链上，让每一个加密人都能做多信仰，做空现实。
+              6900 是 A 股股民心中永远的高点幻想<br />
+              也是我们十几年等不到的牛市终点<br />
+              所以我们决定不等了 —— <span className="highlight">链上自造！</span>
             </p>
             <button className="pixel-btn primary" onClick={() => setCurrentPage('whyLong')}>
-              登录链上A股
+              冲！我们要自己干一波6900！
             </button>
           </div>
         )}
 
         {currentPage === 'whyLong' && (
           <div className="why-long-page">
-            <h2 className="pixel-title">为什么要做多6900</h2>
+            <h2 className="pixel-title">为什么做多 A6900？</h2>
             <p className="pixel-description">
-              做多A6900，不是因为理性，而是因为热血。
-              <br />
-              我们炒的不只是股，是一种情绪，是一种信仰，是一场告别内卷的运动。
+              做多 A6900，不是因为技术面<br />
+              是因为我亏怕了，我想赢一次！<br />
+              A股给不了的高潮，链上帮你达成！
             </p>
             
             <div className="meme-reasons">
@@ -115,9 +137,10 @@ function App() {
 
         {currentPage === 'interactive' && (
           <div className="interactive-page">
-            <h2 className="pixel-title">助力A6900</h2>
+            <h2 className="pixel-title">点击助力 A6900</h2>
             <p className="pixel-description">
-              点击按钮，释放你的A股信仰！
+              每点一下按钮，你就"助推"A6900离6900更近<br />
+              同时全屏会飘出一句真实A股股民金句
             </p>
             
             <div className="boost-section">
@@ -125,11 +148,11 @@ function App() {
                 className="pixel-btn boost-btn"
                 onClick={handleBoostClick}
               >
-                助力A6900 ({clickCount})
+                链上高点，一键 FOMO！ ({clickCount})
               </button>
               
               <div className="click-counter">
-                已助力: {clickCount} 次
+                已助力: {clickCount} 次 | 距离6900还有: {Math.max(0, 6900 - clickCount)} 点
               </div>
             </div>
           </div>
@@ -169,6 +192,22 @@ function App() {
           ></div>
         ))}
       </div>
+
+      {/* 烟花效果 */}
+      {showFloatingTexts && (
+        <div className="fireworks">
+          {[...Array(20)].map((_, i) => (
+            <div 
+              key={i}
+              className="firework"
+              style={{
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 0.5}s`
+              }}
+            ></div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

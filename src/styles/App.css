@@ -13,6 +13,18 @@
   font-family: 'Press Start 2P', monospace;
   overflow-x: hidden;
   position: relative;
+  transition: transform 0.1s ease;
+}
+
+/* 屏幕抖动效果 */
+.screen-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
 }
 
 /* 像素风背景 */
@@ -114,6 +126,23 @@
   }
 }
 
+/* 旧高点6124 */
+.old-high {
+  position: absolute;
+  top: 60%;
+  left: 30%;
+  font-size: 3rem;
+  color: #D62300;
+  opacity: 0.5;
+  z-index: -1;
+  animation: oldHighFade 3s ease-in-out infinite alternate;
+}
+
+@keyframes oldHighFade {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.7; }
+}
+
 /* 导航栏 */
 .pixel-nav {
   position: fixed;
@@ -135,10 +164,11 @@
   color: #FFD400;
   padding: 10px 20px;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   cursor: pointer;
   transition: all 0.2s ease;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .nav-btn:hover {
@@ -180,10 +210,49 @@
 }
 
 .pixel-subtitle {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #00D843;
   margin-bottom: 2rem;
   text-shadow: 1px 1px 0 #000;
+}
+
+/* 口号区域 */
+.meme-slogan {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.slogan-item {
+  background: rgba(255, 212, 0, 0.1);
+  border: 2px solid #FFD400;
+  padding: 15px 25px;
+  font-size: 1rem;
+  color: #FFD400;
+  text-shadow: 1px 1px 0 #000;
+  animation: sloganPulse 2s ease-in-out infinite alternate;
+  max-width: 500px;
+}
+
+.slogan-item:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.slogan-item:nth-child(3) {
+  animation-delay: 1s;
+}
+
+@keyframes sloganPulse {
+  0% { 
+    box-shadow: 0 0 10px rgba(255, 212, 0, 0.3);
+    transform: scale(1);
+  }
+  100% { 
+    box-shadow: 0 0 20px rgba(255, 212, 0, 0.6);
+    transform: scale(1.05);
+  }
 }
 
 .pixel-description {
@@ -193,6 +262,12 @@
   margin: 0 auto 2rem;
   color: #fff;
   text-shadow: 1px 1px 0 #000;
+}
+
+.highlight {
+  color: #FFD400;
+  font-weight: bold;
+  text-shadow: 0 0 10px #FFD400;
 }
 
 /* 像素风按钮 */
@@ -348,6 +423,41 @@
   }
 }
 
+/* 烟花效果 */
+.fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.firework {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #FFD400;
+  border-radius: 50%;
+  animation: fireworkExplode 1s ease-out forwards;
+}
+
+@keyframes fireworkExplode {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(3);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(5);
+  }
+}
+
 /* 粒子效果 */
 .particles {
   position: fixed;
@@ -393,7 +503,7 @@
   }
   
   .pixel-subtitle {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
   
   .pixel-description {
@@ -406,7 +516,7 @@
   }
   
   .nav-btn {
-    font-size: 0.6rem;
+    font-size: 0.5rem;
     padding: 8px 15px;
   }
   
@@ -421,6 +531,15 @@
   
   .glowing-6900 {
     font-size: 4rem;
+  }
+  
+  .old-high {
+    font-size: 2rem;
+  }
+  
+  .slogan-item {
+    font-size: 0.8rem;
+    padding: 10px 15px;
   }
 }
 
