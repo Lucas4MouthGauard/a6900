@@ -56,16 +56,16 @@ function App() {
     "我是做价值投资的",
     "我满仓茅台，站着死！",
     "十年一遇的底部，又来了！",
-    "A股不涨没关系，链上我们让它涨！",
+    "A股不涨没关系，我们自己造一个！",
     "冲！我们要自己干一波6900！",
-    "链上高点，一键 FOMO！",
-    "别再看上证指数了，看 $A6900 就够了！"
+    "梦想高点，一键助力！",
+    "别再看上证指数了，看 A6900 就够了！"
   ];
 
   const homeAnimations = [
     "6124 → 6900",
-    "A股不给 → 链上给",
-    "现实不涨 → 链上涨",
+    "A股不给 → 自己给",
+    "现实不涨 → 梦想涨",
     "等待牛市 → 自造牛市"
   ];
 
@@ -153,7 +153,7 @@ function App() {
         {currentPage === 'home' && (
           <div className="home-page">
             <h1 className="pixel-title">A6900</h1>
-            <h2 className="pixel-subtitle">一个你等不来的高点，我们链上自己冲</h2>
+            <h2 className="pixel-subtitle">一个你等不来的高点，我们自己造一个</h2>
             
             {/* 交互式动画区域 */}
             <div className="home-interactive-area">
@@ -168,15 +168,15 @@ function App() {
             </div>
 
             <div className="meme-slogan">
-              <div className="slogan-item">现实不涨？那就链上涨！</div>
+              <div className="slogan-item">现实不涨？那就梦想涨！</div>
               <div className="slogan-item">A股不给的，我们自己造一个！</div>
-              <div className="slogan-item">别再看上证指数了，看 $A6900 就够了！</div>
+              <div className="slogan-item">别再看上证指数了，看 A6900 就够了！</div>
             </div>
             
             <p className="pixel-description">
               6900 是 A 股股民心中永远的高点幻想<br />
               也是我们十几年等不到的牛市终点<br />
-              所以我们决定不等了 —— <span className="highlight">链上自造！</span>
+              所以我们决定不等了 —— <span className="highlight">自己造一个！</span>
             </p>
             
             <div className="home-stats">
@@ -203,7 +203,7 @@ function App() {
             <p className="pixel-description">
               做多 A6900，不是因为技术面<br />
               是因为我亏怕了，我想赢一次！<br />
-              A股给不了的高潮，链上帮你达成！
+              A股给不了的梦想，我们自己实现！
             </p>
             
             {/* 主角展示区域 */}
@@ -267,7 +267,7 @@ function App() {
                 className="pixel-btn boost-btn"
                 onClick={handleBoostClick}
               >
-                链上高点，一键 FOMO！ ({clickCount})
+                梦想高点，一键助力！ ({clickCount})
               </button>
               
               <div className="click-counter">
