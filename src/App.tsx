@@ -6,14 +6,47 @@ function App() {
   const [clickCount, setClickCount] = useState(0);
   const [showFloatingTexts, setShowFloatingTexts] = useState(false);
   const [showShake, setShowShake] = useState(false);
+  const [currentMemeIndex, setCurrentMemeIndex] = useState(0);
+  const [showHomeAnimation, setShowHomeAnimation] = useState(false);
+  const [homeClickCount, setHomeClickCount] = useState(0);
 
   const memeReasons = [
-    { text: "中国股市怎么能看空！", avatar: "🇨🇳" },
-    { text: "这次一定不一样！", avatar: "🚀" },
-    { text: "只要我不卖，它就不会跌", avatar: "💎" },
-    { text: "我是做价值投资的", avatar: "📈" },
-    { text: "我满仓茅台，站着死！", avatar: "🍶" },
-    { text: "十年一遇的底部，又来了！", avatar: "📉" }
+    { 
+      text: "中国股市怎么能看空！", 
+      avatar: "🇨🇳",
+      bgColor: "#D62300",
+      description: "爱国情怀，不容置疑！"
+    },
+    { 
+      text: "这次一定不一样！", 
+      avatar: "🚀",
+      bgColor: "#FFD400",
+      description: "历史不会重演，这次真的不一样！"
+    },
+    { 
+      text: "只要我不卖，它就不会跌", 
+      avatar: "💎",
+      bgColor: "#00D843",
+      description: "钻石手，永不卖出！"
+    },
+    { 
+      text: "我是做价值投资的", 
+      avatar: "📈",
+      bgColor: "#FF6B35",
+      description: "巴菲特说过，价值投资永远有效！"
+    },
+    { 
+      text: "我满仓茅台，站着死！", 
+      avatar: "🍶",
+      bgColor: "#8B4513",
+      description: "国酒茅台，永不倒！"
+    },
+    { 
+      text: "十年一遇的底部，又来了！", 
+      avatar: "📉",
+      bgColor: "#4A90E2",
+      description: "抄底时机，千载难逢！"
+    }
   ];
 
   const floatingTexts = [
@@ -29,21 +62,47 @@ function App() {
     "别再看上证指数了，看 $A6900 就够了！"
   ];
 
+  const homeAnimations = [
+    "6124 → 6900",
+    "A股不给 → 链上给",
+    "现实不涨 → 链上涨",
+    "等待牛市 → 自造牛市"
+  ];
+
   const handleBoostClick = () => {
     setClickCount(prev => prev + 1);
     setShowFloatingTexts(true);
     setShowShake(true);
     
-    // 播放音效（如果有的话）
+    // 播放音效
     const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmGgU7k9n1unEiBC13yO/eizEIHWq+8+OWT');
     audio.volume = 0.3;
-    audio.play().catch(() => {}); // 忽略可能的错误
+    audio.play().catch(() => {});
     
     setTimeout(() => {
       setShowFloatingTexts(false);
       setShowShake(false);
     }, 3000);
   };
+
+  const handleHomeClick = () => {
+    setHomeClickCount(prev => prev + 1);
+    setShowHomeAnimation(true);
+    setTimeout(() => setShowHomeAnimation(false), 2000);
+  };
+
+  const handleMemeClick = (index: number) => {
+    setCurrentMemeIndex(index);
+  };
+
+  useEffect(() => {
+    if (currentPage === 'whyLong') {
+      const interval = setInterval(() => {
+        setCurrentMemeIndex(prev => (prev + 1) % memeReasons.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [currentPage]);
 
   return (
     <div className={`App ${showShake ? 'screen-shake' : ''}`}>
@@ -95,16 +154,43 @@ function App() {
           <div className="home-page">
             <h1 className="pixel-title">A6900</h1>
             <h2 className="pixel-subtitle">一个你等不来的高点，我们链上自己冲</h2>
+            
+            {/* 交互式动画区域 */}
+            <div className="home-interactive-area">
+              <div className="animation-container">
+                <div className="animation-text">
+                  {homeAnimations[homeClickCount % homeAnimations.length]}
+                </div>
+                <button className="animation-btn" onClick={handleHomeClick}>
+                  点击切换叙事 ({homeClickCount})
+                </button>
+              </div>
+            </div>
+
             <div className="meme-slogan">
               <div className="slogan-item">现实不涨？那就链上涨！</div>
               <div className="slogan-item">A股不给的，我们自己造一个！</div>
               <div className="slogan-item">别再看上证指数了，看 $A6900 就够了！</div>
             </div>
+            
             <p className="pixel-description">
               6900 是 A 股股民心中永远的高点幻想<br />
               也是我们十几年等不到的牛市终点<br />
               所以我们决定不等了 —— <span className="highlight">链上自造！</span>
             </p>
+            
+            <div className="home-stats">
+              <div className="stat-item">
+                <div className="stat-number">6124</div>
+                <div className="stat-label">历史高点</div>
+              </div>
+              <div className="stat-arrow">→</div>
+              <div className="stat-item">
+                <div className="stat-number">6900</div>
+                <div className="stat-label">梦想高点</div>
+              </div>
+            </div>
+
             <button className="pixel-btn primary" onClick={() => setCurrentPage('whyLong')}>
               冲！我们要自己干一波6900！
             </button>
@@ -120,17 +206,50 @@ function App() {
               A股给不了的高潮，链上帮你达成！
             </p>
             
-            <div className="meme-reasons">
-              {memeReasons.map((reason, index) => (
+            {/* 主角展示区域 */}
+            <div className="hero-section">
+              <div className="hero-card">
+                <div className="hero-avatar">{memeReasons[currentMemeIndex].avatar}</div>
+                <div className="hero-text">{memeReasons[currentMemeIndex].text}</div>
+                <div className="hero-description">{memeReasons[currentMemeIndex].description}</div>
                 <div 
-                  key={index} 
-                  className="meme-reason"
-                  style={{ animationDelay: `${index * 0.2}s` }}
-                >
-                  <div className="avatar">{reason.avatar}</div>
-                  <div className="reason-text">{reason.text}</div>
-                </div>
-              ))}
+                  className="hero-bg"
+                  style={{ backgroundColor: memeReasons[currentMemeIndex].bgColor }}
+                ></div>
+              </div>
+            </div>
+
+            {/* 角色选择区域 */}
+            <div className="character-selector">
+              <h3 className="selector-title">选择你的角色</h3>
+              <div className="character-grid">
+                {memeReasons.map((reason, index) => (
+                  <div 
+                    key={index}
+                    className={`character-item ${currentMemeIndex === index ? 'active' : ''}`}
+                    onClick={() => handleMemeClick(index)}
+                    style={{ borderColor: reason.bgColor }}
+                  >
+                    <div className="character-avatar">{reason.avatar}</div>
+                    <div className="character-name">{reason.text}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 情绪指数 */}
+            <div className="emotion-meter">
+              <div className="meter-label">当前情绪指数</div>
+              <div className="meter-bar">
+                <div 
+                  className="meter-fill"
+                  style={{ 
+                    width: `${Math.min(100, (currentMemeIndex + 1) * 16.67)}%`,
+                    backgroundColor: memeReasons[currentMemeIndex].bgColor
+                  }}
+                ></div>
+              </div>
+              <div className="meter-value">{Math.min(100, (currentMemeIndex + 1) * 16.67)}%</div>
             </div>
           </div>
         )}
@@ -175,6 +294,15 @@ function App() {
               {text}
             </div>
           ))}
+        </div>
+      )}
+
+      {/* 首页动画 */}
+      {showHomeAnimation && (
+        <div className="home-animation-overlay">
+          <div className="home-animation-text">
+            {homeAnimations[homeClickCount % homeAnimations.length]}
+          </div>
         </div>
       )}
 
