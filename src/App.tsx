@@ -172,7 +172,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          🐦
+          𝕏
         </a>
       </nav>
 
