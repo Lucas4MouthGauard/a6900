@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './styles/App.css';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'whyLong' | 'interactive'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'whyLong' | 'interactive' | 'token'>('home');
   const [clickCount, setClickCount] = useState(0);
   const [showFloatingTexts, setShowFloatingTexts] = useState(false);
   const [showShake, setShowShake] = useState(false);
@@ -95,6 +95,20 @@ function App() {
     setCurrentMemeIndex(index);
   };
 
+  const handleCopyAddress = () => {
+    navigator.clipboard.writeText('000000000000000000000000000').then(() => {
+      // 可以添加一个提示，但这里保持简洁
+    }).catch(() => {
+      // 降级方案
+      const textArea = document.createElement('textarea');
+      textArea.value = '000000000000000000000000000';
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+    });
+  };
+
   useEffect(() => {
     if (currentPage === 'whyLong') {
       const interval = setInterval(() => {
@@ -146,6 +160,20 @@ function App() {
         >
           点击助力
         </button>
+        <button 
+          className={`nav-btn ${currentPage === 'token' ? 'active' : ''}`}
+          onClick={() => setCurrentPage('token')}
+        >
+          $A6900
+        </button>
+        <a 
+          href="#" 
+          className="nav-btn twitter-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          🐦
+        </a>
       </nav>
 
       {/* 主内容区 */}
@@ -272,6 +300,73 @@ function App() {
               
               <div className="click-counter">
                 已助力: {clickCount} 次 | 距离6900还有: {Math.max(0, 6900 - clickCount)} 点
+              </div>
+            </div>
+          </div>
+        )}
+
+        {currentPage === 'token' && (
+          <div className="token-page">
+            <h2 className="pixel-title">$A6900</h2>
+            <p className="pixel-description">
+              A股不给的，我们自己造一个！<br />
+              6900点，就在眼前！
+            </p>
+            
+            <div className="token-info">
+              <div className="contract-address">
+                <h3>合约地址</h3>
+                                  <div className="address-box">
+                    <code>CA: 000000000000000000000000000</code>
+                    <button className="copy-btn" onClick={handleCopyAddress}>复制</button>
+                  </div>
+              </div>
+              
+              <div className="token-stats">
+                <div className="stat-card">
+                  <div className="stat-icon">📈</div>
+                  <div className="stat-title">当前价格</div>
+                  <div className="stat-value">$0.0006900</div>
+                </div>
+                <div className="stat-card">
+                  <div className="stat-icon">💰</div>
+                  <div className="stat-title">市值</div>
+                  <div className="stat-value">$6,900,000</div>
+                </div>
+                <div className="stat-card">
+                  <div className="stat-icon">🔥</div>
+                  <div className="stat-title">持有人数</div>
+                  <div className="stat-value">69,000</div>
+                </div>
+              </div>
+              
+              <div className="buy-section">
+                <button className="pixel-btn buy-btn disabled">
+                  Buy $A6900
+                </button>
+                <p className="buy-note">暂时不可跳转</p>
+              </div>
+              
+              <div className="token-features">
+                <h3>为什么选择 $A6900？</h3>
+                <div className="feature-list">
+                  <div className="feature-item">
+                    <span className="feature-icon">🎯</span>
+                    <span>目标明确：6900点</span>
+                  </div>
+                  <div className="feature-item">
+                    <span className="feature-icon">🚀</span>
+                    <span>A股股民情绪共鸣</span>
+                  </div>
+                  <div className="feature-item">
+                    <span className="feature-icon">💎</span>
+                    <span>钻石手社区</span>
+                  </div>
+                  <div className="feature-item">
+                    <span className="feature-icon">🔥</span>
+                    <span>燃烧机制</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
