@@ -345,10 +345,6 @@ function App() {
                     <span className="feature-icon">💎</span>
                     <span>钻石手社区</span>
                   </div>
-                  <div className="feature-item">
-                    <span className="feature-icon">🔥</span>
-                    <span>燃烧机制</span>
-                  </div>
                 </div>
               </div>
             </div>
