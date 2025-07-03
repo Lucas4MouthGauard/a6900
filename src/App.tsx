@@ -59,7 +59,7 @@ function App() {
     "A股不涨没关系，我们自己造一个！",
     "冲！我们要自己干一波6900！",
     "梦想高点，一键助力！",
-    "别再看上证指数了，看 A6900 就够了！"
+    "别再看上证指数了，看 大A6900 就够了！"
   ];
 
   const homeAnimations = [
@@ -146,7 +146,7 @@ function App() {
           className={`nav-btn ${currentPage === 'home' ? 'active' : ''}`}
           onClick={() => setCurrentPage('home')}
         >
-          为什么叫A6900
+          为什么叫大A6900
         </button>
         <button 
           className={`nav-btn ${currentPage === 'whyLong' ? 'active' : ''}`}
@@ -180,7 +180,7 @@ function App() {
       <main className="main-content">
         {currentPage === 'home' && (
           <div className="home-page">
-            <h1 className="pixel-title">A6900</h1>
+            <h1 className="pixel-title">大A6900</h1>
             <h2 className="pixel-subtitle">一个你等不来的高点，我们自己造一个</h2>
             
             {/* 交互式动画区域 */}
@@ -198,13 +198,13 @@ function App() {
             <div className="meme-slogan">
               <div className="slogan-item">现实不涨？那就梦想涨！</div>
               <div className="slogan-item">A股不给的，我们自己造一个！</div>
-              <div className="slogan-item">别再看上证指数了，看 $A6900 就够了！</div>
+              <div className="slogan-item">别再看上证指数了，看 $大A6900 就够了！</div>
             </div>
             
             <p className="pixel-description">
               6900 是 A 股股民心中永远的高点幻想<br />
               也是我们十几年等不到的牛市终点<br />
-              所以我们决定不等了 —— <span className="highlight">$A6900 就在眼前</span>
+              所以我们决定不等了 —— <span className="highlight">$大A6900 就在眼前</span>
             </p>
             
             <div className="home-stats">
@@ -227,9 +227,9 @@ function App() {
 
         {currentPage === 'whyLong' && (
           <div className="why-long-page">
-            <h2 className="pixel-title">为什么做多 A6900？</h2>
+            <h2 className="pixel-title">为什么做多 大A6900？</h2>
             <p className="pixel-description">
-              做多 A6900，不是因为技术面<br />
+              做多 大A6900，不是因为技术面<br />
               是因为我亏怕了，我想赢一次！<br />
               A股给不了的梦想，我们自己实现！
             </p>
@@ -284,9 +284,9 @@ function App() {
 
         {currentPage === 'interactive' && (
           <div className="interactive-page">
-            <h2 className="pixel-title">点击助力 A6900</h2>
+            <h2 className="pixel-title">点击助力 大A6900</h2>
             <p className="pixel-description">
-              每点一下按钮，你就"助推"A6900离6900更近<br />
+              每点一下按钮，你就"助推"大A6900离6900更近<br />
               同时全屏会飘出一句真实A股股民金句
             </p>
             
@@ -307,7 +307,7 @@ function App() {
 
         {currentPage === 'token' && (
           <div className="token-page">
-            <h2 className="pixel-title">$A6900</h2>
+            <h2 className="pixel-title">$大A6900</h2>
             <p className="pixel-description">
               A股不给的，我们自己造一个！<br />
               6900点，就在眼前！
@@ -326,12 +326,12 @@ function App() {
               
               <div className="buy-section">
                 <button className="pixel-btn buy-btn disabled">
-                  Buy $A6900
+                  Buy $大A6900
                 </button>
               </div>
               
               <div className="token-features">
-                <h3>为什么选择 $A6900？</h3>
+                <h3>为什么选择 $大A6900？</h3>
                 <div className="feature-list">
                   <div className="feature-item">
                     <span className="feature-icon">🎯</span>
