@@ -195,6 +195,7 @@
 
 /* 像素风标题 */
 .pixel-title {
+  font-family: 'Press Start 2P', monospace;
   font-size: 3rem;
   color: #FFD400;
   text-shadow: 
@@ -753,6 +754,7 @@
 /* 响应式设计 */
 @media (max-width: 768px) {
   .pixel-title {
+    font-family: 'Press Start 2P', monospace;
     font-size: 2rem;
   }
   
