@@ -86,7 +86,7 @@ function App() {
   };
 
   const handleHomeClick = () => {
-    setHomeClickCount(prev => prev + 1);
+    setHomeClickCount(prev => (prev + 1) % homeAnimations.length);
     setShowHomeAnimation(true);
     setTimeout(() => setShowHomeAnimation(false), 2000);
   };
@@ -159,10 +159,10 @@ function App() {
             <div className="home-interactive-area">
               <div className="animation-container">
                 <div className="animation-text">
-                  {homeAnimations[homeClickCount % homeAnimations.length]}
+                  {homeAnimations[homeClickCount]}
                 </div>
                 <button className="animation-btn" onClick={handleHomeClick}>
-                  点击切换叙事 ({homeClickCount})
+                  点击切换叙事 ({homeClickCount + 1})
                 </button>
               </div>
             </div>
@@ -170,13 +170,13 @@ function App() {
             <div className="meme-slogan">
               <div className="slogan-item">现实不涨？那就梦想涨！</div>
               <div className="slogan-item">A股不给的，我们自己造一个！</div>
-              <div className="slogan-item">别再看上证指数了，看 A6900 就够了！</div>
+              <div className="slogan-item">别再看上证指数了，看 $A6900 就够了！</div>
             </div>
             
             <p className="pixel-description">
               6900 是 A 股股民心中永远的高点幻想<br />
               也是我们十几年等不到的牛市终点<br />
-              所以我们决定不等了 —— <span className="highlight">自己造一个！</span>
+              所以我们决定不等了 —— <span className="highlight">$A6900 就在眼前</span>
             </p>
             
             <div className="home-stats">
@@ -300,9 +300,9 @@ function App() {
       {/* 首页动画 */}
       {showHomeAnimation && (
         <div className="home-animation-overlay">
-          <div className="home-animation-text">
-            {homeAnimations[homeClickCount % homeAnimations.length]}
-          </div>
+                  <div className="home-animation-text">
+          {homeAnimations[homeClickCount]}
+        </div>
         </div>
       )}
 
