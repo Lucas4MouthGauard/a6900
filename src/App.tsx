@@ -328,7 +328,6 @@ function App() {
                 <button className="pixel-btn buy-btn disabled">
                   Buy $A6900
                 </button>
-                <p className="buy-note">暂时不可跳转</p>
               </div>
               
               <div className="token-features">
