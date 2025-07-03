@@ -322,23 +322,7 @@ function App() {
                   </div>
               </div>
               
-              <div className="token-stats">
-                <div className="stat-card">
-                  <div className="stat-icon">📈</div>
-                  <div className="stat-title">当前价格</div>
-                  <div className="stat-value">$0.0006900</div>
-                </div>
-                <div className="stat-card">
-                  <div className="stat-icon">💰</div>
-                  <div className="stat-title">市值</div>
-                  <div className="stat-value">$6,900,000</div>
-                </div>
-                <div className="stat-card">
-                  <div className="stat-icon">🔥</div>
-                  <div className="stat-title">持有人数</div>
-                  <div className="stat-value">69,000</div>
-                </div>
-              </div>
+
               
               <div className="buy-section">
                 <button className="pixel-btn buy-btn disabled">
