@@ -167,7 +167,7 @@ function App() {
           $A6900
         </button>
         <a 
-          href="https://x.com/a6900_sol" 
+          href="https://x.com/BigA6900" 
           className="nav-btn twitter-btn"
           target="_blank"
           rel="noopener noreferrer"
